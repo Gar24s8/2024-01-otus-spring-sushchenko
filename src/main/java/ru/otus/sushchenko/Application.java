@@ -9,6 +9,5 @@ public class Application {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
         var testRunnerService = context.getBean(TestRunnerService.class);
         testRunnerService.run();
-
     }
 }

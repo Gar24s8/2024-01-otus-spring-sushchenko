@@ -9,8 +9,7 @@ import org.mockito.Spy;
 import ru.otus.sushchenko.config.TestFileNameProvider;
 import ru.otus.sushchenko.exceptions.QuestionReadException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrowsExactly;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 class CsvQuestionDaoTest {
@@ -29,7 +28,7 @@ class CsvQuestionDaoTest {
     @Test
     void findAll_ShouldReturnExpectedSize_WhenExists() {
         int expectedRows = 5;
-        when(fileNameProvider.getTestFileName()).thenReturn("questions.csv");
+        when(fileNameProvider.getTestFileName()).thenReturn("testQuestions.csv");
         int actualRows = csvQuestionDao.findAll().size();
 
         assertEquals(expectedRows, actualRows);
@@ -39,7 +38,6 @@ class CsvQuestionDaoTest {
     void findAll_ShouldThrowQuestionReadException_WhenCsvFileIsInvalid() {
         when(fileNameProvider.getTestFileName()).thenReturn("invalid.csv");
 
-        assertThrowsExactly(QuestionReadException.class, () -> csvQuestionDao.findAll(), "CSV file not found");
+        assertThrows(QuestionReadException.class, () -> csvQuestionDao.findAll());
     }
-
 }

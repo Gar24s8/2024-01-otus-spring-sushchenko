@@ -12,6 +12,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.requireNonNull;
+
 @RequiredArgsConstructor
 public class CsvQuestionDao implements QuestionDao {
 
@@ -19,13 +21,11 @@ public class CsvQuestionDao implements QuestionDao {
 
     @Override
     public List<Question> findAll() {
-        try (var inputStream = getClass().getClassLoader().getResourceAsStream(fileNameProvider.getTestFileName())) {
-            if (inputStream != null) {
-                return processCsvFile(inputStream);
-            }
-            throw new QuestionReadException("CSV file not found");
+        try (var inputStream = requireNonNull(getClass().getClassLoader()
+                .getResourceAsStream(fileNameProvider.getTestFileName()), "Error reading CSV file")) {
+            return processCsvFile(inputStream);
         } catch (Exception e) {
-            throw new QuestionReadException(e.getMessage(), e);
+            throw new QuestionReadException("Error reading CSV file", e);
         }
     }
 
