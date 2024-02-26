@@ -6,23 +6,23 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="fileNameProvider" class="ru.otus.sushchenko.config.AppProperties">
+    <bean id="fileNameProvider" class="ru.sushchenko.hw01.config.AppProperties">
         <constructor-arg index="0" value="questions.csv" />
     </bean>
-    <bean id="questionDao" class="ru.otus.sushchenko.dao.CsvQuestionDao">
+    <bean id="questionDao" class="ru.sushchenko.hw01.dao.CsvQuestionDao">
         <constructor-arg name="fileNameProvider" ref="fileNameProvider"/>
     </bean>
-    <bean id="ioService" class="ru.otus.sushchenko.service.StreamsIOService">
+    <bean id="ioService" class="ru.sushchenko.hw01.service.StreamsIOService">
         <constructor-arg index="0">
             <util:constant static-field="java.lang.System.out"/>
         </constructor-arg>
     </bean>
     <bean id="testServiceImpl"
-          class="ru.otus.sushchenko.service.TestServiceImpl">
+          class="ru.sushchenko.hw01.service.TestServiceImpl">
         <constructor-arg index="0" name="ioService" ref="ioService"/>
         <constructor-arg index="1" name="questionDao" ref="questionDao"/>
     </bean>
-    <bean id="testRunnerServiceImpl" class="ru.otus.sushchenko.service.TestRunnerServiceImpl">
+    <bean id="testRunnerServiceImpl" class="ru.sushchenko.hw01.service.TestRunnerServiceImpl">
         <constructor-arg name="testService" ref="testServiceImpl"/>
     </bean>
 </beans>
