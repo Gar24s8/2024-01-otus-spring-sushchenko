@@ -39,7 +39,7 @@ class TestServiceImplTest {
     }
 
     @Test
-    void testAllCorrectAnswers() {
+    void executeTestFor_ShouldReturnTestResultWithCorrectAnswers_WhenAllAnswersAreCorrect() {
 
         var expectedCorrectAnswers = 3;
 
