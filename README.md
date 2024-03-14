@@ -6,3 +6,4 @@
 
 ## История слияний в master :
 10.02.2024 - [feature/hw01-xml-config] - Домашнее задание №1 к занятию "Введение в Spring Framework" 
+26.02.2024 - [feature/hw-02-annotation-config] - Домашнее задание №2 к занятию "Конфигурирование Spring-приложений"
