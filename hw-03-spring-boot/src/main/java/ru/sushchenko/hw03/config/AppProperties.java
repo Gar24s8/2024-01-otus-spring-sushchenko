@@ -8,7 +8,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @ConfigurationProperties(prefix = "test")
-public class AppProperties implements TestConfig, TestFileNameProvider, LocaleConfig {
+public class AppProperties implements TestConfig, TestFileNameProvider, LocaleProvider {
 
     private final int rightAnswersCountToPass;
 
